@@ -8,22 +8,22 @@ Whatch a simple <a href='https://github.com/marco-gagliardi/pool2/blob/master/de
 
 ## Usage
 
-1 - include pool2.js in your page
+Include pool2.js in your page
 
 ```html
 <script src="src/pool2.js"></script>
 ```
 
-2) instantiate a new pull to refresh element
+Instantiate a new pull to refresh element
 ```javascript
 var p = new pool2();
 ```
-3) Tell the library the id of the whole object (likely a list) be pulled down and the id of the element that must be touched to start the pulling effect 
+Tell the library the id of the whole object (likely a list) be pulled down and the id of the element that must be touched to start the pulling effect 
 ```javascript
 p.setList("list"); //id of the whole list
 p.setPullable("pullable"); //id of the element to be pulled to start the effect
 ```
-4) Override callback functions with your own 'onMove' and 'onTouchEnd' events handlers (take advantage of the 'thresholdPassed' flag to pilot a different behaviour whether the minimum threshold offset in pixels has been passed or not)
+Override callback functions with your own 'onMove' and 'onTouchEnd' events handlers (take advantage of the 'thresholdPassed' flag to pilot a different behaviour whether the minimum threshold offset in pixels has been passed or not)
 ```javascript
     p.onTouchEnd = function() {
         //eg. hide  messages  
