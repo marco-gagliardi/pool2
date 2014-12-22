@@ -4,7 +4,7 @@ A simple, lightwave, pure javascript library to easily implement a pull-to-refre
 
 
 ### Demo
-Whatch a simple <a href='https://github.com/marco-gagliardi/pool2/blob/master/demo.html'>demo</a>
+Whatch a simple <a href='http://marco-gagliardi.github.io/pool2'>demo</a>
 
 ## Usage
 
