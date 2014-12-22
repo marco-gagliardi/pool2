@@ -25,7 +25,7 @@ p.setPullable("pullable"); //id of the element to be pulled to start the effect
 ```
 4) Override callback functions with your own 'onMove' and 'onTouchEnd' events handlers (take advantage of the 'thresholdPassed' flag to pilot a different behaviour whether the minimum threshold offset in pixels has been passed or not)
 ```javascript
-p.onTouchEnd = function() {
+    p.onTouchEnd = function() {
         //eg. hide  messages  
         if(p.thresholdPassed) {
             //eg. start the loading animation, download new data, stop the loading animation
