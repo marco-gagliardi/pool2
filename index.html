@@ -1,0 +1,65 @@
+
+<!doctype html>
+<html>
+<head>
+    <title>Pool 2</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="src/pool2.js"></script>
+    <style>
+        #pullable:hover{
+            cursor:pointer;
+        }
+    </style>
+</head>
+<body style="height: 1000px;">
+
+<h1>Pool 2</h1>
+<h3>By <a href="mailto:marcogagliardi84@gmail.com">Marco Gagliardi</a></h3>
+
+<div id="label" style="text-align: center;position:absolute;left:0; right:0;"></div>
+<div id="loading" style="text-align: center;display:none;position:absolute;left:0; right:0;">loading..</div>
+
+<div id="list">
+    <div id ="pullable">
+        pull me down
+    </div>
+
+    <ul id="elements">
+        <li>item 6</li>
+        <li>item 5</li>
+        <li>item 4</li>
+        <li>item 3</li>
+        <li>item 2</li>
+        <li>item 1</li>
+    </ul>
+</div>
+
+
+<script>
+    var pullToRefresh = new pool2();
+    pullToRefresh.setList("list");
+    pullToRefresh.setPullable("pullable");
+
+
+    pullToRefresh.onTouchEnd = function() {
+        document.getElementById("label").innerHTML = "";
+        if(pullToRefresh.thresholdPassed) {
+            document.getElementById("loading").style.display = "block";
+            setTimeout(function(){
+                document.getElementById("elements").innerHTML =  "<li>new item " + Math.floor((Math.random() * 10) + 1) + "</li>" + document.getElementById("elements").innerHTML;
+                document.getElementById("loading").style.display = "none";
+            }, 1500)
+        }
+    };
+
+    pullToRefresh.onMove = function() {
+        if(pullToRefresh.thresholdPassed) {
+            document.getElementById("label").innerHTML = "release to refresh";
+        } else {
+            document.getElementById("label").innerHTML = "pull down to refresh";
+        }
+    };
+</script>
+
+</body>
+</html>
