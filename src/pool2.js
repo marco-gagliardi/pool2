@@ -21,7 +21,7 @@ function pool2() {
      * init callback functions  *
      ***************************/
 
-    self.onTouchEnd = function() {
+    self.onRelease = function() {
         console.warn("touch end event not handled");
     };
     self.onMove = function() {
@@ -84,8 +84,8 @@ function pool2() {
             self.isTouched = false;
             //now if the list has moved downwards, it should come up but in a transition
             self.list.style.transition = "top "+ self.comeUpDuration;
-            if (typeof self.onTouchEnd === 'function')
-                self.onTouchEnd();
+            if (typeof self.onRelease === 'function')
+                self.onRelease();
 
             self.list.style.top = self.cssY + 'px';
             self.thresholdPassed = false;
@@ -95,8 +95,8 @@ function pool2() {
             self.isTouched = false;
             self.list.style.transition = "top "+ self.comeUpDuration;
 
-            if (typeof self.onTouchEnd === 'function')
-                self.onTouchEnd();
+            if (typeof self.onRelease === 'function')
+                self.onRelease();
             self.list.style.top = self.cssY + 'px';
             self.thresholdPassed = false;
         },false);

@@ -40,7 +40,7 @@
     pullToRefresh.setPullable("pullable");
 
 
-    pullToRefresh.onTouchEnd = function() {
+    pullToRefresh.onRelease = function() {
         document.getElementById("label").innerHTML = "";
         if(pullToRefresh.thresholdPassed) {
             document.getElementById("loading").style.display = "block";
