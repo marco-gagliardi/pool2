@@ -1,6 +1,6 @@
 # pool2
 
-A simple, lightwave, pure javascript library to easily implement a pull-to-refresh mechanism in a web application (for both desktop or touch devices). 
+A simple, lightwave, pure javascript library to easily implement a pull-to-refresh mechanism in a web application. It works on  both desktop ond touch devices. No extra libraries or frameworks needed! 
 
 
 ### Demo
@@ -8,7 +8,7 @@ Whatch a simple <a href='http://marco-gagliardi.github.io/pool2'>demo</a>
 
 ## Usage
 
-Include pool2.js in your page
+Include pool2.js in your HTML page
 
 ```html
 <script src="src/pool2.js"></script>
