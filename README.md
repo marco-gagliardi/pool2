@@ -19,9 +19,9 @@ var p = new pool2("list");
 ```
 Optional: Tell the library to start the overall effect only when the user touches and pulls a specific container's sub-element (if not specified, the whole container will be considered as the pullable element). Tip: useful on mobile devices to allow long lists scrolling without triggering the refresh action each time!
 ```javascript
-p.setPullable("pullable"); //id of the container's sub-element that must be pulled in order to start the effect
+p.setPullable("pullable"); //element or element-id of the container's sub-element that must be pulled in order to start the effect
 ```
-Override callback functions with your own 'onMove' and 'onTouchEnd' events handlers (tip: take advantage of the 'thresholdPassed' flag to pilot different behaviours whether the minimum threshold offset in pixels has been passed or not)
+Override callback functions with your own 'onMove' and 'onTouchEnd' events handlers (Tip: take advantage of the 'thresholdPassed' flag to pilot different behaviours whether the minimum threshold offset in pixels has been passed or not)
 ```javascript
     p.onRelease = function() {
         //eg. hide  messages  
