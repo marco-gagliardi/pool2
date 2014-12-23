@@ -4,6 +4,7 @@
 function pool2() {
 
     var self = this;
+    //get the body
     var body = document.getElementsByTagName('body')[0];
     //return animation duration
     self.comeUpDuration= "0.3s";
