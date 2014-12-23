@@ -9,7 +9,7 @@ function pool2() {
     self.comeUpDuration= "0.3s";
     //pulled pixels threshold to trigger transition
     self.thrashold = 40;
-    //intertial value on pulling
+    //intertial ratio value on pulling
     self.inertiaRatio = 3;
     //keep the state whether the fingers are touched
     self.isTouched = false;
@@ -22,10 +22,10 @@ function pool2() {
      ***************************/
 
     self.onRelease = function() {
-        console.warn("touch end event not handled");
+        console.warn("Touch end event not handled!");
     };
     self.onMove = function() {
-        console.warn("move  event not handled");
+        console.warn("Move  event not handled!");
     };
 
 
@@ -36,7 +36,7 @@ function pool2() {
         //The Pullable Element
     self.setPullable = function (touchableID) {
         if (!touchableID) {
-            console.error("Missing ID parameter");
+            console.error("Missing ID parameter!");
             return;
         }
         if (!self.list) {
