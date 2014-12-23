@@ -43,7 +43,7 @@ function pool2(listID) {
             return;
         }
         if (!self.list) {
-            console.error("Set list first!");
+            console.error("Cannot set pullable element: Set list first by invoking 'setList(<listID>)' function.!");
             return;
         }
         //if a previous element was set remove event listeners
@@ -148,9 +148,10 @@ function pool2(listID) {
     };
 
     if (listID) {
-
         self.setList(listID);
         self.setPullable(listID);
+    } else {
+        console.warn("Warning: no Id specified. You can set it by invoking 'setList(<listID>)' function.")
     }
 
 }
