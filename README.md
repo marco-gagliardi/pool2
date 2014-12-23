@@ -2,8 +2,8 @@
 
 A simple, tiny, lightweight, pure javascript library to easily implement a pull-to-whatever mechanism in a web application. It works on  both desktop and mobile/touch devices. No extra libraries or frameworks needed! 
 
-### Demo
-Watch a simple <a href='http://marco-gagliardi.github.io/pool2'>demo here</a>
+## Demo
+Watch a simple demo <a href='http://marco-gagliardi.github.io/pool2'>here</a>
 
 ## Usage
 
@@ -19,7 +19,8 @@ var p = new pool2("list");
 ```
 (Optional) Tell the library to start the overall effect only when the user touches and pulls a specific container's sub-element (if not specified, the whole list/container will be considered as the pullable element). Tip: useful on mobile devices to allow long lists scrolling without triggering the refresh action each time!
 ```javascript
-p.setPullable("pullable"); //element or element-id of the container's sub-element that must be pulled in order to start the effect
+var element = document.getElementById("pullable");
+p.setPullable(element); //element or element-id of the container's sub-element that must be pulled in order to start the effect
 ```
 Override callback functions with your own 'onMove' and 'onTouchEnd' events handlers (Tip: take advantage of the 'thresholdPassed' flag to pilot different behaviours whether the minimum threshold offset in pixels has been passed or not)
 ```javascript

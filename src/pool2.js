@@ -1,6 +1,10 @@
 /**
- * Created by marcogagliardi marcogagliardi84@gmail.com on 22/12/14.
+ * Created by Marco Gagliardi  on 22/12/14.
+ * Email: marcogagliardi84@gmail.com
+ * Web: https://github.com/marco-gagliardi/pool2
+ *
  */
+
 function pool2(list) {
 
     var self = this;
@@ -43,7 +47,7 @@ function pool2(list) {
             return;
         }
         if (!self.list) {
-            console.error("Cannot set pullable element: Set list first by invoking 'setList()' function.");
+            console.error("Cannot set pullable element: set list first by invoking 'setList()' function.");
             return;
         }
         //if a previous element was set remove event listeners
