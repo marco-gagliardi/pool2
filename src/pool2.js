@@ -140,6 +140,7 @@ function pool2(listID) {
                     if (typeof self.onMove === 'function')
                         self.onMove();
                 }
+                e.preventDefault();
             }
         };
 
