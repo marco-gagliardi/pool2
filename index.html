@@ -12,8 +12,8 @@
 </head>
 <body style="height: 1000px;">
 
-<h1>Pool 2</h1>
-<h3>By <a href="mailto:marcogagliardi84@gmail.com">Marco Gagliardi</a></h3>
+<h2>Pool 2 - By <a href="mailto:marcogagliardi84@gmail.com">Marco Gagliardi</a></h2>
+<p>This is a demonstration page for <a href="https://github.com/marco-gagliardi/pool2">pool2</a> with a list and a pullable sub-element</p>
 
 <div id="label" style="text-align: center;position:absolute;left:0; right:0;"></div>
 <div id="loading" style="text-align: center;display:none;position:absolute;left:0; right:0;">loading..</div>
@@ -24,6 +24,9 @@
     </div>
 
     <ul id="elements">
+        <li>item 9</li>
+        <li>item 8</li>
+        <li>item 7</li>
         <li>item 6</li>
         <li>item 5</li>
         <li>item 4</li>
@@ -35,22 +38,18 @@
 
 
 <script>
-    var pullToRefresh = new pool2();
-    pullToRefresh.setList("list");
+    var pullToRefresh = new pool2("list");
     pullToRefresh.setPullable("pullable");
-
-
     pullToRefresh.onRelease = function() {
         document.getElementById("label").innerHTML = "";
         if(pullToRefresh.thresholdPassed) {
             document.getElementById("loading").style.display = "block";
             setTimeout(function(){
-                document.getElementById("elements").innerHTML =  "<li>new item " + Math.floor((Math.random() * 10) + 1) + "</li>" + document.getElementById("elements").innerHTML;
+                document.getElementById("elements").innerHTML =  "<li>random item " + Math.floor((Math.random() * 10) + 1) + "</li>" + document.getElementById("elements").innerHTML;
                 document.getElementById("loading").style.display = "none";
             }, 1500)
         }
     };
-
     pullToRefresh.onMove = function() {
         if(pullToRefresh.thresholdPassed) {
             document.getElementById("label").innerHTML = "release to refresh";

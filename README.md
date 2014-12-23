@@ -1,7 +1,6 @@
 # pool2
 
-A simple, lightwave, pure javascript library to easily implement a pull-to-refresh mechanism in a web application. It works on  both desktop and mobile/touch devices. No extra libraries or frameworks needed! 
-
+A simple, tiny, lightweight, pure javascript library to easily implement a pull-to-refresh mechanism in a web application. It works on  both desktop and mobile/touch devices. No extra libraries or frameworks needed! 
 
 ### Demo
 Watch a simple <a href='http://marco-gagliardi.github.io/pool2'>demo here</a>
@@ -14,24 +13,22 @@ Include pool2.js in your HTML page
 <script src="src/pool2.js"></script>
 ```
 
-Instantiate a new pull to refresh element
+Instantiate a new pull to refresh element, passing the list container ID as a parameter
 ```javascript
-var p = new pool2();
+var p = new pool2("list");
 ```
-Tell the library the id of the whole object (likely a list) be pulled down and the id of the element that must be touched to start the pulling effect (it can be the list itself if needed, or a descendant element)
+Optional: Tell the library to start the overall effect only when the user touches and pulls a specific container's sub-element (if not specified, the whole container will be considered as the pullable element). Tip: useful on mobile devices to allow long lists scrolling without triggering the refresh action each time!
 ```javascript
-p.setList("list"); //id of the whole list
-p.setPullable("pullable"); //id of the element to be pulled to start the effect
+p.setPullable("pullable"); //id of the container's sub-element to be pulled to start the effect
 ```
 Override callback functions with your own 'onMove' and 'onTouchEnd' events handlers (tip: take advantage of the 'thresholdPassed' flag to pilot different behaviours whether the minimum threshold offset in pixels has been passed or not)
 ```javascript
-    p.onTouchEnd = function() {
+    p.onRelease = function() {
         //eg. hide  messages  
         if(p.thresholdPassed) {
             //eg. start the loading animation, download new data, stop the loading animation
         }
     };
-
     p.onMove = function() {
         if(p.thresholdPassed) {
             //eg. show the user a message to release the pulling now
