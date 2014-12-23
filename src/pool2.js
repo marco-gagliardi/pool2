@@ -1,7 +1,7 @@
 /**
  * Created by marcogagliardi marcogagliardi84@gmail.com on 22/12/14.
  */
-function pool2(listID) {
+function pool2(list) {
 
     var self = this;
     //get the body
@@ -37,13 +37,13 @@ function pool2(listID) {
      *******************/
 
         //The Pullable Element
-    self.setPullable = function (touchableID) {
-        if (!touchableID) {
-            console.error("Missing ID parameter!");
+    self.setPullable = function (touchable) {
+        if (!touchable) {
+            console.error("Specify an element or an ID");
             return;
         }
         if (!self.list) {
-            console.error("Cannot set pullable element: Set list first by invoking 'setList(<listID>)' function.!");
+            console.error("Cannot set pullable element: Set list first by invoking 'setList()' function.");
             return;
         }
         //if a previous element was set remove event listeners
@@ -51,8 +51,12 @@ function pool2(listID) {
             self.touchable.removeEventListener('touchstart', self.touchstartHandler, false);
             self.touchable.removeEventListener('mousedown', self.mousedownHandler, false);
         }
+
         //set new element
-        self.touchable = document.getElementById(touchableID);
+        if (typeof touchable === 'string') {
+            touchable = document.getElementById(touchable);
+        }
+        self.touchable = touchable;
 
         //The original Top offset (relative to screen) position of the list
         self.prevY = parseInt(self.touchable.offsetTop);
@@ -77,12 +81,15 @@ function pool2(listID) {
     };
 
     //The list container
-    self.setList = function (listID) {
-        if (!listID) {
-            console.error("Missing ID parameter");
+    self.setList = function (list) {
+        if (!list) {
+            console.error("Specify an element or an ID");
             return;
         }
-        self.list = document.getElementById(listID);
+        if (typeof list === 'string') {
+            list = document.getElementById(list);
+        }
+        self.list = list;
         self.list.style.position = 'relative';
         self.list.style.top = '0';
 
@@ -147,11 +154,11 @@ function pool2(listID) {
 
     };
 
-    if (listID) {
-        self.setList(listID);
-        self.setPullable(listID);
+    if (list) {
+        self.setList(list);
+        self.setPullable(list);
     } else {
-        console.warn("Warning: no Id specified. You can set it by invoking 'setList(<listID>)' function.")
+        console.warn("Warning: no element specified. You can set it by invoking 'setList()' function.")
     }
 
 }
