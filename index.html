@@ -42,7 +42,9 @@
 
 <script>
     var pullToRefresh = new pool2("list");
-    pullToRefresh.setPullable("pullable");
+    var pul = document.getElementById("pullable");
+
+    pullToRefresh.setPullable(pul);
     pullToRefresh.onRelease = function() {
         document.getElementById("label").innerHTML = "";
         if(pullToRefresh.thresholdPassed) {

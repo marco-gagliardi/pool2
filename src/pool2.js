@@ -43,7 +43,7 @@ function pool2(list) {
             return;
         }
         if (!self.list) {
-            console.error("Cannot set pullable element: Set list first by invoking 'setList(<list>)' function.!");
+            console.error("Cannot set pullable element: Set list first by invoking 'setList()' function.");
             return;
         }
         //if a previous element was set remove event listeners
@@ -158,7 +158,7 @@ function pool2(list) {
         self.setList(list);
         self.setPullable(list);
     } else {
-        console.warn("Warning: no Id specified. You can set it by invoking 'setList(<list>)' function.")
+        console.warn("Warning: no element specified. You can set it by invoking 'setList()' function.")
     }
 
 }
