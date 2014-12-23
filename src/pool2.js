@@ -66,6 +66,7 @@ function pool2(list) {
         self.prevY = parseInt(self.touchable.offsetTop);
 
         self.touchstartHandler = function(e){
+            e.preventDefault();
             self.isTouched = true;
             //initialize the touched point
             self.prevY = e.changedTouches[0].clientY;
@@ -73,6 +74,7 @@ function pool2(list) {
             self.list.style.transition = "";
         };
         self.mousedownHandler = function(e){
+            e.preventDefault();
             self.isTouched = true;
             self.prevY = e.clientY;
             self.list.style.transition = "";
