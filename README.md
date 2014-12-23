@@ -1,6 +1,6 @@
 # pool2
 
-A simple, tiny, lightweight, pure javascript library to easily implement a pull-to-refresh mechanism in a web application. It works on  both desktop and mobile/touch devices. No extra libraries or frameworks needed! 
+A simple, tiny, lightweight, pure javascript library to easily implement a pull-to-whatever mechanism in a web application. It works on  both desktop and mobile/touch devices. No extra libraries or frameworks needed! 
 
 ### Demo
 Watch a simple <a href='http://marco-gagliardi.github.io/pool2'>demo here</a>
