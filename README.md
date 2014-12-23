@@ -1,6 +1,6 @@
 # pool2
 
-A simple, lightwave, pure javascript library to easily implement a pull-to-refresh mechanism in a web application. It works on  both desktop ond mobile/touch devices. No extra libraries or frameworks needed! 
+A simple, lightwave, pure javascript library to easily implement a pull-to-refresh mechanism in a web application. It works on  both desktop and mobile/touch devices. No extra libraries or frameworks needed! 
 
 
 ### Demo
