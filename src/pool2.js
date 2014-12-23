@@ -1,20 +1,23 @@
 /**
  * Created by marcogagliardi marcogagliardi84@gmail.com on 22/12/14.
  */
-function pool2() {
+function pool2(listID) {
 
     var self = this;
+    //get the body
     var body = document.getElementsByTagName('body')[0];
     //return animation duration
     self.comeUpDuration= "0.3s";
     //pulled pixels threshold to trigger transition
     self.thrashold = 40;
-    //intertial value on pulling
+    //intertial ratio value on pulling
     self.inertiaRatio = 3;
-    //keep the state whether the fingers are touched
+    //keep the state whether the touch event occurred on the object
     self.isTouched = false;
-    //keep the state whether a PULL actually went out
+    //keep the state whether a PULL actually went out the threshold
     self.thresholdPassed = false;
+
+
 
 
     /***************************
@@ -22,10 +25,10 @@ function pool2() {
      ***************************/
 
     self.onRelease = function() {
-        console.warn("touch end event not handled");
+        console.warn("Touch end event not handled!");
     };
     self.onMove = function() {
-        console.warn("move  event not handled");
+        console.warn("Move  event not handled!");
     };
 
 
@@ -36,32 +39,41 @@ function pool2() {
         //The Pullable Element
     self.setPullable = function (touchableID) {
         if (!touchableID) {
-            console.error("Missing ID parameter");
+            console.error("Missing ID parameter!");
             return;
         }
         if (!self.list) {
             console.error("Set list first!");
             return;
         }
+        //if a previous element was set remove event listeners
+        if (self.touchstartHandler || self.mousedownHandler) {
+            self.touchable.removeEventListener('touchstart', self.touchstartHandler, false);
+            self.touchable.removeEventListener('mousedown', self.mousedownHandler, false);
+        }
+        //set new element
         self.touchable = document.getElementById(touchableID);
 
         //The original Top offset (relative to screen) position of the list
         self.prevY = parseInt(self.touchable.offsetTop);
 
-        //Touch Start handler
-        self.touchable.addEventListener("touchstart",function(e){
+        self.touchstartHandler = function(e){
             self.isTouched = true;
             //initialize the touched point
             self.prevY = e.changedTouches[0].clientY;
             // use css3 transitions when available for smooth sliding
             self.list.style.transition = "";
-        },false);
-        //Click start handler  (for desktop browsers)
-        self.touchable.addEventListener("mousedown",function(e){
+        };
+        self.mousedownHandler = function(e){
             self.isTouched = true;
             self.prevY = e.clientY;
             self.list.style.transition = "";
-        },false);
+        };
+
+        //Touch Start handler
+        self.touchable.addEventListener("touchstart", self.touchstartHandler ,false);
+        //Click start handler  (for desktop browsers)
+        self.touchable.addEventListener("mousedown", self.mousedownHandler,false);
     };
 
     //The list container
@@ -79,7 +91,7 @@ function pool2() {
         self.cssY = parseInt(self.cssY.substring(0,self.cssY.length - 2)); //remove unit
 
         //Touch End handler
-        body.addEventListener("touchend",function(e){
+        self.touchendHandler = function(e){
             //on touchup we cancel the touch event
             self.isTouched = false;
             //now if the list has moved downwards, it should come up but in a transition
@@ -89,20 +101,21 @@ function pool2() {
 
             self.list.style.top = self.cssY + 'px';
             self.thresholdPassed = false;
-        },false);
+        };
+        body.addEventListener("touchend",self.touchendHandler,false);
+
         //mouse up handler  (for desktop browsers)
-        body.addEventListener("mouseup",function(e){
+        self.mouseupHandler = function(e){
             self.isTouched = false;
             self.list.style.transition = "top "+ self.comeUpDuration;
-
-            if (typeof self.onRelease === 'function')
-                self.onRelease();
+            if (typeof self.onRelease === 'function') self.onRelease();
             self.list.style.top = self.cssY + 'px';
             self.thresholdPassed = false;
-        },false);
+        };
+        body.addEventListener("mouseup",self.mouseupHandler,false);
 
         //handle touch-move event
-        self.list.addEventListener("touchmove",function(e){
+        self.touchmoveHandler = function(e){
             if(self.isTouched){
                 if(e.changedTouches[0].clientY > self.prevY){
                     //on touchmove, we add the exact amount fingers moved to the top of the list
@@ -114,9 +127,11 @@ function pool2() {
 
                 }
             }
-        },false);
+        };
+        self.list.addEventListener("touchmove",self.touchmoveHandler,false);
+
         //handle mousemove event (for desktop browsers)
-        self.list.addEventListener("mousemove",function(e){
+        self.mousemoveHandler = function(e){
             if(self.isTouched){
                 if(e.clientY > self.prevY){
                     var change = (e.clientY - self.prevY)/self.inertiaRatio;
@@ -126,9 +141,17 @@ function pool2() {
                         self.onMove();
                 }
             }
-        },false);
+        };
+
+        self.list.addEventListener("mousemove",self.mousemoveHandler,false);
 
     };
+
+    if (listID) {
+
+        self.setList(listID);
+        self.setPullable(listID);
+    }
 
 }
 
