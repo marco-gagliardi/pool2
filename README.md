@@ -17,7 +17,7 @@ Instantiate a new pull to refresh element, passing the list container ID as a pa
 ```javascript
 var p = new pool2("list");
 ```
-Optional: Tell the library to start the overall effect only when the user touches and pulls a specific container's sub-element (if not specified, the whole container will be considered as the pullable element). Tip: useful on mobile devices to allow long lists scrolling without triggering the refresh action each time!
+(Optional) Tell the library to start the overall effect only when the user touches and pulls a specific container's sub-element (if not specified, the whole list/container will be considered as the pullable element). Tip: useful on mobile devices to allow long lists scrolling without triggering the refresh action each time!
 ```javascript
 p.setPullable("pullable"); //element or element-id of the container's sub-element that must be pulled in order to start the effect
 ```
