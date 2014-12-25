@@ -15,7 +15,8 @@ Include pool2.js in your HTML page
 
 Instantiate a new pull to refresh element, passing the list container ID as a parameter
 ```javascript
-var p = new pool2("list");
+var container = document.getElementById("list");
+var p = new pool2(container);
 ```
 (Optional) Tell the library to start the overall effect only when the user touches and pulls a specific container's sub-element (if not specified, the whole list/container will be considered as the pullable element). Tip: useful on mobile devices to allow long lists scrolling without triggering the refresh action each time!
 ```javascript
