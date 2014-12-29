@@ -153,6 +153,7 @@ function pool2(list) {
                     if (typeof self.onMove === 'function')
                         self.onMove();
                 }
+                e.preventDefault();
             }
         };
 
